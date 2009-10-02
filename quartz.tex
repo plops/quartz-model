@@ -1,0 +1,181 @@
+\documentclass[twocolumn,10pt,DIV18]{scrartcl}
+\usepackage{graphicx}
+\usepackage[ngerman]{babel}
+\usepackage{hyperref}
+\usepackage{units}
+\usepackage{amsmath}
+\usepackage{verbatim}
+
+\renewcommand{\v}[1]{{\mathbf #1}} % bold vector
+\newcommand{\T}[1]{{\bar #1}} % tensor
+\newcommand{\E}{\v E}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\D}{\v D}
+\newcommand{\B}{\v B}
+\renewcommand{\H}{\v H}
+\newcommand{\hk}{\hat{\v k}} % Einheitswellenvektor
+\renewcommand{\r}{\v r}
+\renewcommand{\[}{\left[}
+\renewcommand{\]}{\right]}
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}
+% Excerpt von Stephen C. McClain 1992
+\title{Quartz -- Modellierung optischer Eigenschaften und Simulation}
+\author{Martin Kielhorn}
+\date{30. September 2009}
+
+\begin{document}
+  \maketitle 
+
+  Um die Ausbreitung von Licht in anderen Medien als Vakuum zu
+  beschreiben, muss man zus\"atzlich zu den Maxwell Gleichungen die
+  Materialgleichungen des Mediums kennen. Diese Gleichungen geben an,
+  wie die elektromagnetischen Feldvektoren $\E$, $\D$, $\B$ und $\H$
+  im Medium miteinander wechselwirken. Beispielsweise kann $\E$ freie
+  Ladungen bewegen. Das Magnetfeld dieses Stroms \"andert daraufhin $\B$.
+
+  Das wichtigste Material in der Optik ist Glas. Es ist (f\"ur
+  optische Wellenl\"angen) linear, isotrop, homogen, nicht magnetisch,
+  nicht optisch aktiv und nicht absorbierend. F\"ur diesen Fall sehen
+  die Materialgleichungen einfach aus:
+  \begin{align}
+    \D&=\eps\E,\\
+    \B&=\H.
+  \end{align}
+  Die Dielektrizit\"atskonstante ist ein frequenzabh\"angiger Skalar.
+  
+  In einem anisotropen Medium haben die Elektronen bestimmte
+  Vorzugsrichtungen. Die erste Materialgleichung muss dann mit einem
+  Tensor $\T\eps$ beschrieben werden:
+  \begin{align}
+    \D=\T \eps\E.
+  \end{align}
+  Quartz ist ein einachsiger, trigonaler Kristall mit einer
+  Spiegelasymmetrie. Der Quartzkristall ist invariant unter
+  $120^\circ$ oder $240^\circ$ Drehungen um seine Kristallachse $\hat
+  c$. Diese Rotationssymmetrie spiegelt sich auch im dielektrischen
+  Tensor $\T\eps$ wieder:
+  \begin{align}
+    \T\eps=\begin{pmatrix}
+    \eps_o&0&0\\
+    0&\eps_o&0\\
+    0&0&\eps_e
+    \end{pmatrix}.
+  \end{align}
+  Die fehlende Spiegelsymmetrie bewirkt, dass im Kristall Spiralen
+  entstehen. Der Kristall ist chiral und damit optisch aktiv. Die
+  durch ein \"au\ss eres elektrisches Feld bewegten Ladungen werden im
+  Kristallgitter auf helixf\"ormige Bahnen gezwungen. Dieser Strom
+  ruft ein magnetisches Dipolmoment der Gr\"o\ss enordnung $\dot\E$
+  hervor. Analog entsteht in einem Magnetfeld eine elektrische
+  Polarization der Gr\"o\ss enordnugn $\dot\H$.
+  
+  Der Quartz Kristall ist optisch aktiv, anisotrop und nicht
+  magnetisch (d.h. $\T\mu$ wird der Einheitstensor $\T 1$). Deshalb
+  gelten in ihm die Materialgleichungen:
+  \begin{align}
+    \D&=\T\eps\E+\T\chi\H,\\
+    \B&=\H+\T\chi\E.
+  \end{align}
+  Wobei der Tensor $\T\chi$ auf Grund der Dreifachsymmetrie eine zu
+  $\T\eps$ analoge Form aufweist. Mit der Zeitabh\"angigkeit
+  $\exp(-i\omega t)$ der Felder kann der neue Tensor $\T
+  G=\omega\T\chi$ eingef\"uhrt werden:
+  \begin{align}
+    \T G=\begin{pmatrix}
+    g_o&0&0\\
+    0&g_o&0\\
+    0&0&g_e
+    \end{pmatrix}.
+  \end{align}
+  Damit ergibt sich f\"ur die Materialgleichung in Einsteinscher
+  Summennotation:
+  \begin{align}
+    D_k&=\eps_{jk}E_j+iG_{jk}H_j,\\
+    B_k&=\delta_{jk}H_j-iG_{jk}E_j,
+  \end{align}
+  und ausgeschrieben:
+  \begin{align}
+    \D=\begin{pmatrix}
+    \eps_o E_x+ig_oH_x\\
+    \eps_o E_y+ig_oH_y\\
+    \eps_e E_z+ig_eH_z
+    \end{pmatrix},\quad
+    \B=\H-i\begin{pmatrix}
+    g_oE_x\\
+    g_oE_y\\
+    g_eE_z
+    \end{pmatrix}.
+  \end{align}
+  \section{Eigenwertgleichungen}
+  Wenn man die Materialgleichungen in die Maxwellgleichungen einsetzt,
+  erh\"alt man eine Eigenwertgleichung f\"ur das elektrische
+  Feld. Diese fa\ss t den Zusammenhang zwischen Wellenvektor,
+  Brechzahl und Polarisationszustand kompakt zusammen. Man
+  beginnt man mit einer ebenen, monochromatischen Welle:
+  \begin{align}
+    \E(\r,t)=\textrm{Re}\[\E_0\exp\(i\(\frac{n\omega}{c}\hk\r-\omega t\)\)\]
+  \end{align}
+  und eliminiert alle Felder bis auf $\E$.  Das Ergebnis ist die
+  Eigenwertgleichung
+  \begin{align}
+    \T\eps+\Bigl[n\underbrace{\begin{pmatrix}0&-k_z&k_y\\
+    k_z&0&-k_x\\
+    -k_y&k_x&0\end{pmatrix}}_{\T K}+i\T G\Bigr]^2\,\E=0.
+  \end{align}
+  Hierbei ist $\T K$ ein Kreuzproduktoperator, dessen Komponenten vom
+  Ausbreitungsvektor $\hk$ abgeleitet sind.  F\"ur eine nichttriviale
+  L\"osung von $\E$ muss die Determinante der gesamten Matrix auf der
+  linken Seite verschwinden. Um zur Relation zwischen dem
+  Brechungsindex und der Ausbreitungsrichtung zu kommenm, sei die
+  Kristallachse $\hat c$ entlang $\v e_z$ ausgerichtet. In diesem Fall
+  nehmen die Tensoren $\T\eps$ und $\T G$ diagonale Form an.
+  Weiterhin erfolge die Ausbreitung in der yz-Ebene. Der
+  Ausbreitungsvektor kann als $\hk=(0,\sin\theta,\cos\theta)^T$
+  geschrieben werden. Diese Vereinfachungen darf man vornehmen, denn
+  das Problem ist symmetrisch bez\"uglich der Rotation um die $\hat
+  c$-Achse. Mit diesen Umformungen wird $(n\T K+i\T G)^2$ zu
+  \begin{align*}
+    (n\T K+i\T G)^2=
+    \begin{pmatrix}
+      i g_o      &         -nc         &       ns       \\
+      nc          &      i g_o         &       0       \\
+      -ns         &         0          &     i g_e 
+    \end{pmatrix}^2=\\
+    \begin{pmatrix}
+      -g_o^2-n^2c^2-n^2s^2  &  -2ig_onc     &  ig_ons+ig_ens \\
+      2ig_onc               & -n^2c^2-g_o^2 & n^2sc \\
+      -ig_ons-ig_ens        & n^2sc         & -n^2s^2-g_e^2
+    \end{pmatrix}.
+  \end{align*}
+  mit $c=\cos\theta$, $s=\sin\theta$.  Die gesamte Matrix in der
+  Eigenwertgleichung wird:
+  \begin{align}
+    \!\!\!\begin{pmatrix}
+      \eps_o'-n^2    &  -2ing_oc           &   in(g_o+g_e)s       \\
+      2ing_o c       &  \eps_o'-n^2c^2     &   n^2sc              \\
+      -in(g_o+g_e)s  &  n^2sc              &   \eps_e'-n^2s^2
+    \end{pmatrix}
+  \end{align}
+  mit $\eps_o'=\eps_o-g_o^2$ und $\eps_e'=\eps_e-g_e^2$.  Das
+  Nullsetzen der Determinante liefert eine quadratische Gleichung
+  f\"ur $n^2$:
+  \begin{align}
+    (n^2)^2(e+w)-n^2\(\eps_o'(\eps_o'+e)+v\)+\eps_o'^2\eps_e'=0
+  \end{align}
+  mit
+  \begin{align}
+    e&=c^2\eps_e'+s^2\eps_o',\\
+    v&=4\eps_e'g_o^2c^2+\eps_o'(g_o+g_e)^2s^2, \\
+    w&=(g_o-g_e)^2s^2c^2.
+  \end{align}
+  Die zwei L\"osungen f\"ur $n^2$ sind
+  \begin{align}
+    (n^2)_{e/o}=\frac{\eps_o'(\eps_e'+e)+v
+      \pm\sqrt{q}}{2(e+w)}
+  \end{align}
+  mit
+  \begin{align}
+    q=\eps_o'^2(\eps_o'+e)^2+2\eps_o'v(\eps_e'+e)+v^2-4(e+w)\eps_o'^2\eps_e'.
+  \end{align}
+\end{document}
