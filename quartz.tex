@@ -118,7 +118,7 @@
   \end{align}
   und eliminiert alle Felder bis auf $\E$.  Das Ergebnis ist die
   Eigenwertgleichung
-  \begin{align}
+  \begin{align}\label{eq:ewgl}
     \T\eps+\Bigl[n\underbrace{\begin{pmatrix}0&-k_z&k_y\\
     k_z&0&-k_x\\
     -k_y&k_x&0\end{pmatrix}}_{\T K}+i\T G\Bigr]^2\,\E=0.
@@ -170,7 +170,7 @@
     w&=(g_o-g_e)^2s^2c^2.
   \end{align}
   Die zwei L\"osungen f\"ur $n^2$ sind
-  \begin{align}
+  \begin{align}\label{eq:n2eo}
     (n^2)_{e/o}=\frac{\eps_o'(\eps_e'+e)+v
       \pm\sqrt{q}}{2(e+w)}
   \end{align}
@@ -178,4 +178,32 @@
   \begin{align}
     q=\eps_o'^2(\eps_o'+e)^2+2\eps_o'v(\eps_e'+e)+v^2-4(e+w)\eps_o'^2\eps_e'.
   \end{align}
-\end{document}
+  F\"ur $n$ liefert Gleichung \eqref{eq:n2eo} vier L\"osungen. Zwei
+  davon sind negativ. Sie entsprechen dem negativem Ausbreitungsvektor
+  und werden hier ignoriert. Die anderen beiden sind f\"ur den
+  ordentlichen ($n_o$) und den au\ss erordentlichen Strahl ($n_e$).
+
+  Um die zu einer Brechzahl geh\"orige Polarisationsmode $\hat\E$ zu
+  ermitteln, wird der entsprechende Index $n$ in die
+  Eigenwertgleichung \eqref{eq:ewgl} eingesetzt und die normierte Mode
+  $\hat\E$ bestimmt.  F\"ur Ausbreitung entlang der optischen Achse
+  ($\theta=0$) ergeben sich:
+  \begin{align} %FIXME check right and left
+    n_r&=n_e=\sqrt{\eps_o}+g_o, &\hat\E_e&=\frac{1}{\sqrt{2}}(1,-i,0)^T,\\
+    n_l&=n_o=\sqrt{\eps_o}-g_o, &\hat\E_o&=\frac{1}{\sqrt{2}}(1,i,0)^T.
+  \end{align}
+  Die optische Aktivit\"at bewirkt im rechtsh\"andigen Quartz, dass
+  rechtsdrehendes zirkular polarisiertes Licht langsamer l\"auft als
+  linksdrehendes.  Messwerte f\"ur beide Brechzahlen bei
+  \unit[762]{nm} sind $n_r=1.53920$ und $n_l=1.53914$. Damit k\"onnen
+  \"uber die beiden obigen Gleichung $\eps_o$ und $g_o$ bestimmt
+  werden:
+  \begin{align}
+    \eps_o&=(n_r+n_l)^2/4=\underbar{2.36904}4,\\
+    \Delta\eps_o&=\Delta n_r \frac{n_r+n_l}{2}+\Delta n_l \frac{n_r+n_l}{2}=0.000015,\\
+    g_o&=(n_r-n_l)/2=\underbar{0.000030}0,\\
+    \Delta g_o &= \Delta n_r/2 + \Delta n_l/2 = 0.000005
+  \end{align}
+  Hierbei gehe ich von einem halben Skalenteil Fehler $\Delta
+  n_{l/r}=0.000005$ in den Messwerten aus.
+\end{document} 
